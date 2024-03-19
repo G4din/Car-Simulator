@@ -13,6 +13,28 @@ class MonsterTruck(BaseCar):
         super().__init__(start_x, start_y, direction)
         # Initialize any MonsterTruck-specific attributes here.
 
-    # Placeholder for future MonsterTruck-specific methods
-    # def some_monster_truck_specific_method(self):
-    #     pass
+    def move_forward(self):
+        """
+        Move the car forward by 0.5 meters in the direction it is currently facing.
+        """
+        if self.direction == 'N':
+            self.y += 0.5
+        elif self.direction == 'S':
+            self.y -= 0.5
+        elif self.direction == 'E':
+            self.x += 0.5
+        elif self.direction == 'W':
+            self.x -= 0.5
+ 
+    def move_backward(self):
+        """
+        Move the car backward by 0.5 meters opposite to the direction it is currently facing.
+        """
+        if self.direction == 'N':
+            self.y -= 0.5
+        elif self.direction == 'S':
+            self.y += 0.5
+        elif self.direction == 'E':
+            self.x -= 0.5
+        elif self.direction == 'W':
+            self.x += 0.5

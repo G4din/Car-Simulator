@@ -4,7 +4,7 @@
 run:
 	@echo "Running Simulation..."
 	python3 main.py
-
+ 
 # Run the unit tests
 test:
 	@echo "Running Tests..."

@@ -17,7 +17,7 @@ class Room:
         Parameters:
         x (int): The x-coordinate of the position.
         y (int): The y-coordinate of the position.
-        
+         
         Returns:
         bool: True if the position is within bounds, False otherwise.
         """

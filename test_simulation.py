@@ -4,13 +4,14 @@ from factory import car_factory
 from basecar import BaseCar
 from monstertruck import MonsterTruck
 from simulation import Simulation
+from racecar import RaceCar
 
 class TestRoom(unittest.TestCase):
     def test_room_init(self):
         room = Room(5, 7)
         self.assertEqual(room.width, 5)
         self.assertEqual(room.length, 7)
-
+ 
     def test_position_within_bounds(self):
         room = Room(5, 5)
         self.assertTrue(room.is_position_within_bounds(0, 0))
@@ -42,14 +43,19 @@ class TestCarFactory(unittest.TestCase):
         car = car_factory('monstertruck', 0, 0, 'N')
         self.assertIsInstance(car, MonsterTruck)
 
-class TestMonsterTruck(unittest.TestCase): #TODO: If wanted, add tests for MonsterTruck-specific methods
+class TestMonsterTruck(unittest.TestCase): 
     def test_monster_truck_special_move(self):
-        #car = MonsterTruck(0, 0, 'N')
-        # Assuming special_move method changes the car's position in a unique way (e.g., moving two steps forward)
-        # car.special_move()
-        #expected_position = (0, 2)
-        #self.assertEqual((car.x, car.y), expected_position)
-        pass
+        car = MonsterTruck(0, 0, 'N')
+        car.move_forward()
+        expected_position = (0, 0.5)
+        self.assertEqual((car.x, car.y), expected_position)
+
+class TestRaceCar(unittest.TestCase):
+    def test_race_car_special_move(self):
+        car = RaceCar(0, 0, 'N')
+        car.move_forward()
+        car.rotate_right()
+        self.assertEqual((car.x, car.y, car.direction), (0, 1, 'W'))
 
 class TestSimulation(unittest.TestCase):
     def test_simulation_success(self):

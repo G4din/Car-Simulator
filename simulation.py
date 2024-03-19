@@ -13,7 +13,7 @@ class Simulation:
     def is_within_bounds(self):
         """
         Check if the car is within the bounds of the room.
-        
+         
         Returns:
         bool: True if the car is within bounds, False otherwise.
         """

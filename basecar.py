@@ -25,7 +25,7 @@ class BaseCar:
             self.x += 1
         elif self.direction == 'W':
             self.x -= 1
-
+ 
     def move_backward(self):
         """
         Move the car backward by 1 meter opposite to the direction it is currently facing.

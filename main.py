@@ -1,5 +1,5 @@
 from room import Room
-from factory import car_factory
+from factory import car_factory, check_valid_car
 from simulation import Simulation
 
 def get_room_size():
@@ -11,16 +11,15 @@ def get_room_size():
     int: The length of the room.
     """
     while True:
-        try:
-            size_input = input("Enter the size of the room (X Y): ").split()
-            if len(size_input) != 2:
-                raise ValueError("You must enter exactly two integers.")
-            width, length = map(int, size_input)
-            if width <= 0 or length <= 0:
-                raise ValueError("Room dimensions must be positive integers.")
-            return width, length
-        except ValueError as e:
-            print(f"Invalid input: {e}")
+        size_input = input("Enter the size of the room (X Y): ").split()
+        if len(size_input) != 2:
+            print("You must enter exactly two integers.")
+            continue
+        width, length = map(int, size_input)
+        if width <= 0 or length <= 0:
+            print("Room dimensions must be positive integers.")
+            continue
+        return width, length
 
 def get_start_position(room_width, room_length):
     """
@@ -36,24 +35,24 @@ def get_start_position(room_width, room_length):
     str: The initial direction the car is facing ('N', 'E', 'S', 'W').
     """
     while True:
-        try:
-            start_input = input("Enter the starting position and heading of the car (X Y N/E/S/W): ").split()
-            if len(start_input) != 3:
-                raise ValueError("You must enter exactly two integers followed by one direction (N/E/S/W).")
-            x, y = map(int, start_input[:2])
-            direction = start_input[2].upper()
-            if direction not in ('N', 'E', 'S', 'W'):
-                raise ValueError("Direction must be one of 'N', 'E', 'S', 'W'.")
-            if x < 0 or y < 0 or x >= room_width or y >= room_length:
-                raise ValueError("Starting position must be within room boundaries.")
-            return x, y, direction
-        except ValueError as e:
-            print(f"Invalid input: {e}")
+        start_input = input("Enter the starting position and heading of the car (X Y N/E/S/W): ").split()
+        if len(start_input) != 3:
+            print("You must enter exactly two integers followed by one direction (N/E/S/W).")
+            continue
+        x, y = map(int, start_input[:2])
+        direction = start_input[2].upper()
+        if direction not in ('N', 'E', 'S', 'W'):
+            print("Direction must be one of 'N', 'E', 'S', 'W'.")
+            continue
+        if x < 0 or y < 0 or x >= room_width or y >= room_length:
+            print("Starting position must be within room boundaries.")
+            continue
+        return x, y, direction
 
 def get_commands():
     """
     Prompt the user to enter the commands the car should execute and return the commands as a string.
-    
+     
     Returns:
     str: The commands the car should execute.
     """
@@ -69,13 +68,13 @@ def get_car_type():
     Prompt the user to enter the type of car to simulate and return the car type as a string.
     
     Returns:
-    str: The type of car to simulate ('BaseCar' or 'MonsterTruck').
+    str: The type of car to simulate ('BaseCar', 'MonsterTruck' or 'RaceCar').
     """
     while True:
-        car_type = input("Enter the type of car to simulate (BaseCar/MonsterTruck): ").strip().lower()
-        if car_type in ('basecar', 'monstertruck'): # Add more car types here if necessary.
+        car_type = input("Enter the type of car to simulate (BaseCar/MonsterTruck/RaceCar): ").strip().lower()
+        if check_valid_car(car_type):
             return car_type
-        print("Invalid car type. Please enter 'BaseCar' or 'MonsterTruck'.")
+        print("Invalid car type. Please enter 'BaseCar', 'MonsterTruck' or 'RaceCar'.")
 
 def main():
     """

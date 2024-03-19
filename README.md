@@ -4,7 +4,7 @@
 
 `make run`
 
-### How it Works
+## How it Works
 - **Room**: Defined by the user with width and length in meters. Represents the area in which the car can move.
 - **Car**: Starts at a position and heading (N, E, S, or W) specified by the user. Moves according to the commands entered.
 - **Commands**: The user inputs a series of commands for the car to follow:
@@ -27,7 +27,12 @@ The simulation will output whether the execution was `Successful` or `Unsuccessf
 
 `make test`
 
+## Car Types
+- **BaseCar**: A car with simple and straight forward attributes and functionalites.
+- **MonsterTruck**: A much heavier car than the basecar, requires double the amount of commands (`F` or `B`) to move the same distance as BaseCar. 
+- **RaceCar**: An inverted car, turns left for every `R` and right for every `L`.
+
 ## Assumptions made
-- In the assignment, it is defined that there are multiple car types that the company has. The assignment states that the program should simulate, only, Monster Trucks. However, since it would be suitable for this company to simulate their other car types in the future, I made the assumption that the solution should be easy to scale up for more car types. Therefore, I made a factory pattern that allows new car types to be added in a simple manner. 
+- In the assignment, it is defined that there are multiple car types that the company has. The assignment states that the program should simulate, only, Monster Trucks. However, since it would be suitable for this company to simulate their other car types in the future, I made the assumption that the solution should be easy to scale up for more car types. Therefore, I made a factory pattern and added BaseCar, together with the additions of MonsterTruck and RaceCar, to show how this would work. 
 - The coordinates for the room (width and length) are indexed from 0 (e.g., 0-4 by 0-4).
-- It is stated in the assignment that the room should be in whole meters, therefore, i made the assumption that the car should only be possible to start from whole meters as well.
+- It is stated in the assignment that the room should be in whole meters, therefore, I made the assumption that the car should only be possible to start from whole meters as well.
